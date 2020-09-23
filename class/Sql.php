@@ -9,18 +9,18 @@ class Sql extends PDO { // A classe extend da classe PDO que ja é nativa do sis
 
 	}
 
-	private function setParams($statment, $parameters = array()) {
+	private function setParams($statement, $parameters = array()) {
 
 		foreach ($parameters as $key => $value) {
 			
-			$this->setParam($key, $value);
+			$this->setParam($statement, $key, $value);
 		}
 
 	}
 
-	private function setParam($statment, $key, $value) {
+	private function setParam($statement, $key, $value) {
 
-		$statment->bindParam($key, $value);
+		$statement->bindParam($key, $value);
 	}
 
 	public function query($rawQuery, $params = array()) { // Para executar um comando, vai receber 2 parametro: $rawQuery(É uma query que voce vai tratar ela depois, ou comando sql) e $params(vai ser por padrao um array, pois serao nossos dados que vamos receber)
