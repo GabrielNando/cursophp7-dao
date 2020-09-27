@@ -11,7 +11,7 @@ class Sql extends PDO { // A classe extend da classe PDO que ja é nativa do sis
 
 	private function setParams($statement, $parameters = array()) {
 
-		foreach ($parameters as $key => $value) {
+		foreach ($parameters as $key => $value) { // Faz um loop com todos os parametros que tiver dentro do array, chamando o metodo setParam, e fazendo o bind la dentro de todos os key=>values.
 			
 			$this->setParam($statement, $key, $value);
 		}
@@ -20,17 +20,17 @@ class Sql extends PDO { // A classe extend da classe PDO que ja é nativa do sis
 
 	private function setParam($statement, $key, $value) {
 
-		$statement->bindParam($key, $value);
+		$statement->bindParam($key, $value); // Pega os dados de key e value de algum array, e insere o valor na respectiva chave.
 	}
 
 	public function query($rawQuery, $params = array()) { // Para executar um comando, vai receber 2 parametro: $rawQuery(É uma query que voce vai tratar ela depois, ou comando sql) e $params(vai ser por padrao um array, pois serao nossos dados que vamos receber)
 		$stmt = $this->conn->prepare($rawQuery);
 
-		$this->setParams($stmt, $params);
+		$this->setParams($stmt, $params); // Pega o stmt(que fez o prepare), juntamente com os params informados pelo usuario(ou outro metodo), e envia para o set params para fazer o bind com os demais metodos na logica
 
-		$stmt->execute();
+		$stmt->execute(); // Executa o stmt
 
-		return $stmt;
+		return $stmt; //
 
 }
 
